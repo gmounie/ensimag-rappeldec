@@ -36,5 +36,7 @@ int main() {
 		assert(tmp ==  & tabelem[idx]);
 	}
 
+	free(tabelem);
+	tabelem=NULL;
 	return 0;
 }
