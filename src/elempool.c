@@ -1,5 +1,5 @@
 /**
-   Copyright (C) 2016 by Gregory Mounie 
+   Copyright (C) 2015-2016 by Gregory Mounie 
    
    This file is part of RappelDeC
 
@@ -18,45 +18,32 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
+#include <string.h>
+#include "elempool.h"
+#include "bitset1000.h"
 
-struct elem {
-	int val;
-	struct elem* next;
-};
+static unsigned char *memoireElemPool = 0;
 
-void inversion_liste(struct elem **liste){
-	/**
-	   Votre code est à mettre ici !
-	*/
-};
-
-const int TAILLE=100;
-
-int main() {
-	struct elem *tabelem = malloc(sizeof(struct elem)*TAILLE);
-	assert(tabelem);
-	
-	for(int i=0; i < TAILLE; i++) {
-		tabelem[i] = (struct elem){i, & tabelem[i+1] };
-	}
-	tabelem[TAILLE-1].next = NULL;
-
-	struct elem *tete = & tabelem[0];
-
-	inversion_liste(&tete);
-	assert(tete);
-	
-	struct elem *tmp= tete;
-	int idx= TAILLE-1;
-	for(;tmp; --idx, tmp=tmp->next) {
-		assert(tmp->val == idx);
-		assert(tmp ==  & tabelem[idx]);
-	}
-
-	free(tabelem);
-	tabelem=NULL;
+/**
+   Fonction allouant un element
+*/
+struct Elem* allocElem() {
+	/* ajouter votre code ici / add your code here */
 	return 0;
+}
+
+/**
+   Fonction ramasse-miette sur les elements qui ne sont pas
+   atteignables depuis les têtes de listes
+*/
+void gcElems( struct Elem ** heads, int nbheads) {
+	/* ajouter votre code ici / add your code here */
+}
+
+void initElems() {
+	bt1k_reset();
+	if (! memoireElemPool)
+	  memoireElemPool = malloc(1000 * sizeof(struct Elem));
+	memset(memoireElemPool, 0, 1000 * sizeof(struct Elem));
 }
