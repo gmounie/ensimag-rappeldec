@@ -28,16 +28,17 @@ endif()
 # Si vous utilisez d'autres fichiers .c, en plus de ceux listés,
 # il faut les ajouter ici
 ##
-add_executable(hello src/hello.c)
-add_executable(flottants src/flottants.c)
 add_executable(listechainee src/main_listechainee.c listechainee.c)
-add_executable(fonctions src/fonctions.c)
-add_executable(binaires src/binaires.c)
-add_executable(fichiers src/fichiers.c)
 
 add_library(ensigc SHARED src/elempool.c src/bitset1000.cpp)
 add_executable(ensitestgc tests/gctests.c tests/test0.c tests/test1.c tests/test2.c tests/test3.c tests/test4.c)
 target_link_libraries(ensitestgc ensigc)
+
+add_executable(binaires src/binaires.c)
+
+add_executable(hello src/hello.c)
+add_executable(flottants src/flottants.c)
+add_executable(fonctions src/fqsort.c)
 
 ###
 # Ensimag CentOS 6: utilisation du compilateur installé pour Ada,
@@ -53,6 +54,12 @@ endif(EXISTS /opt/gnat/bin/gcc)
 ##
 # Programme de test
 ##
+add_test(ListeChainee ${CMAKE_BINARY_DIR}/listechainee)
+add_test(valgrindListeChainee valgrind ${CMAKE_BINARY_DIR}/listechainee)
+
 add_test(GC ${CMAKE_BINARY_DIR}/ensitestgc --all)
 add_test(ValgrindGC valgrind ${CMAKE_BINARY_DIR}/ensitestgc --all)
+
+
+
 add_custom_target(check ctest -V)
