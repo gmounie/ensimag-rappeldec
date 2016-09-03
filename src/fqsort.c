@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 	   Vérification du tri
 	*/
 	for(int i=0; i < 100-1; i++) {
-		assert(carg(tableau[i]) < carg(tableau[i+1]));
+		assert(carg(tableau[i]) <= carg(tableau[i+1]));
 	}
 	return 0;
 } 
