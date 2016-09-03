@@ -28,7 +28,7 @@ endif()
 # Si vous utilisez d'autres fichiers .c, en plus de ceux listés,
 # il faut les ajouter ici
 ##
-add_executable(listechainee src/main_listechainee.c listechainee.c)
+add_executable(listechainee src/listechainee.c)
 
 add_library(ensigc SHARED src/elempool.c src/bitset1000.cpp)
 add_executable(ensitestgc tests/gctests.c tests/test0.c tests/test1.c tests/test2.c tests/test3.c tests/test4.c)
@@ -38,7 +38,9 @@ add_executable(binaires src/binaires.c)
 
 add_executable(hello src/hello.c)
 add_executable(flottants src/flottants.c)
-add_executable(fonctions src/fqsort.c)
+
+add_executable(fqsort src/fqsort.c)
+target_link_libraries(fqsort m)
 
 ###
 # Ensimag CentOS 6: utilisation du compilateur installé pour Ada,
@@ -60,6 +62,14 @@ add_test(valgrindListeChainee valgrind ${CMAKE_BINARY_DIR}/listechainee)
 add_test(GC ${CMAKE_BINARY_DIR}/ensitestgc --all)
 add_test(ValgrindGC valgrind ${CMAKE_BINARY_DIR}/ensitestgc --all)
 
+add_test(Binaire ${CMAKE_BINARY_DIR}/../tests/binairestests.rb)
 
+add_test(Hello ${CMAKE_BINARY_DIR}/../tests/hellotests.rb)
 
+add_test(Flottants ${CMAKE_BINARY_DIR}/../tests/flottantstests.rb)
+
+add_test(TriComplexe ${CMAKE_BINARY_DIR}/fqsort)
+add_test(valgrindTriComplexe valgrind ${CMAKE_BINARY_DIR}/fqsort)
+
+# version verbose de tous les tests
 add_custom_target(check ctest -V)
