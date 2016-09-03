@@ -31,7 +31,7 @@ class TestHello < Test::Unit::TestCase
   end
 
   def test_hello
-    a = @pty_read.expect(/∀p *∈ *world *, *hello *p/m, 1) # attendre 1 seconde pour le hello world utf8
+    a = @pty_read.expect(/∀ p ∈ world, hello p/m, 1) # attendre 1 seconde pour le hello world utf8
     assert_not_nil(a, "Chaîne de caractère différente  de '∀p ∈ world , hello p' ou absente")
   end
 
