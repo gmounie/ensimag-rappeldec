@@ -30,6 +30,14 @@ static unsigned char *memoireElemPool = 0;
 */
 struct Elem* allocElem() {
 	/* ajouter votre code ici / add your code here */
+	for(int i=0; i< 1000; i++) {
+		if (! bt1k_get(i)) {
+			bt1k_set(i, true);
+			struct Elem *tmp = (struct Elem *) memoireElemPool;
+			tmp += i;
+			return tmp;
+		}
+	}
 	return 0;
 }
 
@@ -39,6 +47,17 @@ struct Elem* allocElem() {
 */
 void gcElems( struct Elem ** heads, int nbheads) {
 	/* ajouter votre code ici / add your code here */
+	bt1k_reset();
+	for(int i =0; i < nbheads; i++) {
+		struct Elem *tete= heads[i];
+		while(tete) {
+			struct Elem *base = (struct Elem *) memoireElemPool;
+			int idx = tete - base;
+			bt1k_set(idx, true);
+			tete = tete->next;
+		}
+	}
+
 }
 
 void initElems() {
