@@ -3,8 +3,10 @@
 static unsigned long long X=123456ULL;
 
 unsigned char crand48() {
-	(void) X;
-	return 0;
+
+	X = (0x5DEEDE66DULL * X + 0xBULL) % (1ULL <<48);
+	unsigned char c = ((X & 0xFF00000000ULL) >> 32);
+	return c;
 }
 
 
