@@ -30,13 +30,17 @@ class TestFlottants < Test::Unit::TestCase
     # ne rien faire
   end
 
+  
+
+
+
   def test_flottant
-    a = @pty_read.expect(/ddddeddd/m, 1) # attendre 1 seconde pour le hello world utf8
-    assert_not_nil(a, "Valeur 1 attendue (flottants normaux): ''")
-    a = @pty_read.expect(/ddddeddd/m, 1) # attendre 1 seconde pour le hello world utf8
-    assert_not_nil(a, "Valeur 2 attendue (flottants grands): ''")
-    a = @pty_read.expect(/ddddeddd/m, 1) # attendre 1 seconde pour le hello world utf8
-    assert_not_nil(a, "Valeur 3 attendue (flottants très grands): ''")    
+    a = @pty_read.expect(/0.000000e\+00/m, 1) # attendre 1 seconde pour le hello world utf8
+    assert_not_nil(a, "Valeur 1 attendue (flottants normaux): '0.000000e+00'")
+    a = @pty_read.expect(/5.551115e-17/m, 1) # attendre 1 seconde pour le hello world utf8
+    assert_not_nil(a, "Valeur 2 attendue (flottants grands): '5.551115e-17'")
+    a = @pty_read.expect(/0.000000e\+00/m, 1) # attendre 1 seconde pour le hello world utf8
+    assert_not_nil(a, "Valeur 3 attendue (flottants très grands): '0.000000e+00'")    
   end
 
   def test_all
