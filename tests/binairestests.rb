@@ -31,12 +31,12 @@ class TestBinaires < Test::Unit::TestCase
   end
 
   def test_binaires
-    a = @pty_read.expect(/ddddeddd/m, 1) # attendre 1 seconde max
-    assert_not_nil(a, "Valeur 1 attendue: ''")
-    a = @pty_read.expect(/ddddeddd/m, 1) # attendre 1 seconde max
-    assert_not_nil(a, "Valeur 2 attendue: ''")
-    a = @pty_read.expect(/ddddeddd/m, 1) # attendre 1 seconde max
-    assert_not_nil(a, "Valeur 3 attendue: ''")    
+    a = @pty_read.expect(/51/m, 1) # attendre 1 seconde max
+    assert_not_nil(a, "Valeur 1 attendue: '51'")
+    a = @pty_read.expect(/112/m, 1) # attendre 1 seconde max
+    assert_not_nil(a, "Valeur 2 attendue: '112'")
+    a = @pty_read.expect(/193/m, 1) # attendre 1 seconde max
+    assert_not_nil(a, "Valeur 3 attendue: '193'")    
   end
 
   def test_all
