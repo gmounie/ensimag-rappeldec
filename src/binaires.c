@@ -4,7 +4,6 @@ static long long X=123456;
 
 unsigned char crand48() {
 	(void) X;
-	
 	return 0;
 }
 
