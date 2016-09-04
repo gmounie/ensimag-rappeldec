@@ -37,7 +37,8 @@ target_link_libraries(ensitestgc ensigc)
 add_executable(binaires src/binaires.c)
 
 add_executable(hello src/hello.c)
-add_executable(flottants src/flottants.c)
+
+add_executable(flottants src/flottants.c src/abmc.c)
 
 add_executable(fqsort src/fqsort.c)
 target_link_libraries(fqsort m)
