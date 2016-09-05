@@ -31,7 +31,7 @@ void inversion_liste(struct elem **liste){
 	/**
 	   Votre code est à mettre ici !
 	*/
-	struct elem *tete;
+	struct elem *tete = NULL;
 	while (*liste) {
 		struct elem *tmp = *liste;
 		*liste = (*liste)->next;
