@@ -15,27 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require "test/unit"
 require "expect"
 require "pty"
 
-class TestHello < Test::Unit::TestCase
-  test_order=:defined
-
-  def setup
+def test_hello
     @pty_read, @pty_write, @pty_pid = PTY.spawn("../build/hello")
-  end
 
-  def teardown
-    # ne rien faire
-  end
-
-  def test_hello
     a = @pty_read.expect(/∀ p ∈ world, hello p/m, 1) # attendre 1 seconde pour le hello world utf8
-    assert_not_nil(a, "Chaîne de caractère différente  de '∀p ∈ world , hello p' ou absente")
-  end
-
-  def test_all
-    test_hello
-  end
+    if a.nil?
+      puts "Chaîne de caractère différente  de '∀p ∈ world , hello p' ou absente"
+    end
 end
+
+test_hello
