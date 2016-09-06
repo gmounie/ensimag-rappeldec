@@ -6,7 +6,7 @@ endif(COMMAND cmake_policy)
 project(EnsimagRappelDeC)
 enable_testing()
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -std=gnu11")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -Wall -std=gnu11")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=gnu++11")
 
 #########
@@ -16,7 +16,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=gnu++11")
 # inutile pour le rappel de C, mais vous ferez la même chose pour
 # l'examen
 #########
-set(LOGINS login1)
+set(LOGINS petrot)
 
 if (LOGINS MATCHES "login1")
   message(FATAL_ERROR "** ERREUR / ERROR **: Vous devez modifier CMakeLists.txt pour remplacer login1 par votre login / Substitute login1 with your own login in CMakeLists.txt")

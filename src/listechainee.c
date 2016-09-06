@@ -66,6 +66,7 @@ void affichage_liste(struct elem *liste) {
 /* Inverse la liste simplement chainée passée en paramètre. Le
  * paramètre liste contient l'adresse du pointeur sur la tête de liste
  * à inverser. */
+#if !defined RECURSIVE
 void inversion_liste(struct elem **liste) {
     /**
        Votre code est à mettre ici !
@@ -87,6 +88,30 @@ void inversion_liste(struct elem **liste) {
 
     *liste = cur;
 }
+#else
+struct elem *reverse(struct elem *head)
+{
+	struct elem *tmp;
+	if (head == NULL || head->next == NULL)
+           return head;
+
+	tmp = reverse(head->next);
+        head->next->next = head;
+        head->next = NULL;
+	return tmp;
+}
+
+void inversion_liste(struct elem **liste)
+{
+	/**
+	   Votre code est à mettre ici !
+	*/
+        if (liste == NULL || *liste == NULL)
+                return;
+	*liste = reverse(*liste);
+}
+#endif
+>>>>>>> Stashed changes
 
 const int TAILLE = 100;
 
