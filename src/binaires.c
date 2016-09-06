@@ -1,20 +1,17 @@
 #include <stdio.h>
 
-static unsigned long long X=123456ULL;
+static unsigned long long X = 123456ULL;
 
-unsigned char crand48() {
-	(void) X;
-	return 0;
+unsigned char crand48(void) {
+    /* Insérez votre code ici. */
+    return 0;
 }
 
+int main(void)
+{
+    printf("%hhu\n", crand48());
+    printf("%hhu\n", crand48());
+    printf("%hhu\n", crand48());
 
-int main(int argc, char **argv) {
-	(void) argc;
-	(void) argv;
-
-	printf("%hhu\n", crand48());
-	printf("%hhu\n", crand48());
-	printf("%hhu\n", crand48());
-	
-	return 0;
-} 
+    return 0;
+}
