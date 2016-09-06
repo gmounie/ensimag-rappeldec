@@ -18,8 +18,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <assert.h>
 
 struct elem {
@@ -60,5 +60,5 @@ int main(void)
     free(tab_elem);
     tab_elem = NULL;
 
-    return 0;
+    return EXIT_SUCCESS;
 }
