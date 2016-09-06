@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,7 +15,7 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdlib.h>
@@ -23,27 +23,28 @@
 #include "elempool.h"
 #include "bitset1000.h"
 
-static unsigned char *memoireElemPool = 0;
+static unsigned char *memoire_elem_pool = 0;
 
 /**
    Fonction allouant un element
 */
-struct Elem* allocElem() {
-	/* ajouter votre code ici / add your code here */
-	return 0;
+struct elem *alloc_elem(void) {
+    /* ajouter votre code ici / add your code here */
+    return 0;
 }
 
 /**
    Fonction ramasse-miette sur les elements qui ne sont pas
    atteignables depuis les têtes de listes
 */
-void gcElems( struct Elem ** heads, int nbheads) {
-	/* ajouter votre code ici / add your code here */
+void gc_elems(struct elem **heads, int nbheads) {
+    /* ajouter votre code ici / add your code here */
 }
 
 void initElems() {
-	bt1k_reset();
-	if (! memoireElemPool)
-	  memoireElemPool = malloc(1000 * sizeof(struct Elem));
-	memset(memoireElemPool, 0, 1000 * sizeof(struct Elem));
+    bt1k_reset();
+    if (memoire_elem_pool == NULL) {
+        memoire_elem_pool = malloc(1000 * sizeof(struct elem));
+    }
+    memset(memoire_elem_pool, 0, 1000 * sizeof(struct elem));
 }

@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,7 +15,7 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <bitset>
@@ -26,22 +26,18 @@ using namespace std;
 
 static bitset<1000> bitfield {};
 
-
 void bt1k_reset() {
-  bitfield.reset();;
+    bitfield.reset();;
 }
 
 void bt1k_set(int n, bool val) {
-  assert(n >= 0 && n < 1000);
+    assert(n >= 0 && n < 1000);
 
-  bitfield[n] = val;
+    bitfield[n] = val;
 }
 
 bool bt1k_get(int n) {
-  assert(n >= 0 && n < 1000);
+    assert(n >= 0 && n < 1000);
 
-  return bitfield[n];
+    return bitfield[n];
 }
-
-
-
