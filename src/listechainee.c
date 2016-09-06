@@ -27,6 +27,32 @@ struct elem {
     struct elem *next;
 };
 
+/* Affiche les éléments de la liste passée en paramètre sur la sortie
+ * standard. */
+void affichage_liste(struct elem *liste) {
+    /**
+       Votre code est à mettre ici !
+    */
+}
+
+/* Crée une liste simplement chainée à partir des nb_elems éléments du
+ * tableau valeurs. */
+struct elem *creation_liste(int *valeurs, size_t nb_elems) {
+    /**
+       Votre code est à mettre ici !
+    */
+
+    return NULL;
+}
+
+/* Libère toute la mémoire associée à la liste passée en paramètre. */
+void destruction_liste(struct elem *liste) {
+    /**
+       Votre code est à mettre ici !
+    */
+}
+
+
 /* Inverse la liste simplement chainée passée en paramètre. Le
  * paramètre liste contient l'adresse du pointeur sur la tête de liste
  * à inverser. */
@@ -34,48 +60,46 @@ void inversion_liste(struct elem **liste) {
     /**
        Votre code est à mettre ici !
     */
-    if (liste == NULL || *liste == NULL) {
-        return;
-    }
-
-    struct elem *cur = *liste;
-    struct elem *next = cur->next;
-
-    while (next != NULL) {
-        struct elem *next_next = next->next;
-        next->next = cur;
-        cur = next;
-        next = next_next;
-    }
-    *liste = cur;
 }
 
 const int TAILLE = 100;
 
 int main(void)
 {
-    struct elem *tab_elem = malloc(sizeof(struct elem)*TAILLE);
-    assert(tab_elem);
+    /* Test d'affichage d'une liste créée à la main. */
+    struct elem e1, e2, e3;
+    e1.val = 0;
+    e2.val = 1;
+    e3.val = 2;
+    e1.next = &e2;
+    e2.next = &e3;
+    e3.next = NULL;
+    affichage_liste(&e1);
 
-    for(int i = 0; i < TAILLE; i++) {
-        tab_elem[i] = (struct elem){ i, &tab_elem[i + 1] };
+    int valeurs[TAILLE];
+    for (size_t i = 0; i < TAILLE; i++) {
+        valeurs[i] = i;
     }
-    tab_elem[TAILLE - 1].next = NULL;
+    struct elem *tab_elem = creation_liste(valeurs, TAILLE);
+    assert(tab_elem != NULL);
 
-    struct elem *tete = &tab_elem[0];
-
-    inversion_liste(&tete);
-    assert(tete != NULL);
+    printf("Liste créée:\n");
+    affichage_liste(tab_elem);
+    inversion_liste(&tab_elem);
+    assert(tab_elem != NULL);
+    printf("Liste inversée:\n");
+    affichage_liste(tab_elem);
 
     struct elem *tmp;
     int idx;
-    for (tmp = tete, idx = TAILLE - 1; tmp != NULL; --idx, tmp = tmp->next) {
+    for (tmp = tab_elem, idx = TAILLE - 1; tmp != NULL; --idx, tmp = tmp->next) {
         assert(tmp->val == idx);
-        assert(tmp ==  & tab_elem[idx]);
     }
 
-    free(tab_elem);
-    tab_elem = NULL;
+    /* Pour tester le bon fonctionnement de la fonction suivante, on
+     * lancera valgrind sur le programme pour vérifier qu'aucune fuite
+     * mémoire n'est présente. */
+    destruction_liste(tab_elem);
 
     return EXIT_SUCCESS;
 }
