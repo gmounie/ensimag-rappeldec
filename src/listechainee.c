@@ -27,6 +27,9 @@ struct elem {
     struct elem *next;
 };
 
+/* Inverse la liste simplement chainée passée en paramètre. Le
+ * paramètre liste contient l'adresse du pointeur sur la tête de liste
+ * à inverser. */
 void inversion_liste(struct elem **liste) {
     /**
        Votre code est à mettre ici !
