@@ -24,41 +24,41 @@
 
 struct elem {
     int val;
-    struct elem* next;
+    struct elem *next;
 };
 
 void inversion_liste(struct elem **liste) {
     /**
        Votre code est à mettre ici !
     */
-};
+}
 
-const int TAILLE=100;
+const int TAILLE = 100;
 
 int main(void)
 {
-    struct elem *tabelem = malloc(sizeof(struct elem)*TAILLE);
-    assert(tabelem);
+    struct elem *tab_elem = malloc(sizeof(struct elem)*TAILLE);
+    assert(tab_elem);
 
     for(int i = 0; i < TAILLE; i++) {
-        tabelem[i] = (struct elem){ i, &tabelem[i+1] };
+        tab_elem[i] = (struct elem){ i, &tab_elem[i + 1] };
     }
-    tabelem[TAILLE-1].next = NULL;
+    tab_elem[TAILLE - 1].next = NULL;
 
-    struct elem *tete = &tabelem[0];
+    struct elem *tete = &tab_elem[0];
 
     inversion_liste(&tete);
     assert(tete != NULL);
 
-    struct elem *tmp= tete;
-    int idx = TAILLE - 1;
-    for(;tmp; --idx, tmp=tmp->next) {
+    struct elem *tmp;
+    int idx;
+    for (tmp = tete, idx = TAILLE - 1; tmp != NULL; --idx, tmp = tmp->next) {
         assert(tmp->val == idx);
-        assert(tmp ==  & tabelem[idx]);
+        assert(tmp ==  & tab_elem[idx]);
     }
 
-    free(tabelem);
-    tabelem = NULL;
+    free(tab_elem);
+    tab_elem = NULL;
 
     return 0;
 }
