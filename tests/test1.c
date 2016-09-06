@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,7 +15,7 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "utest.h"
@@ -24,15 +24,15 @@
 
 void test1(void)
 {
-	initElems();
-	for(int i=0; i < 1001; i++) {
-		struct Elem *e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = 0;
-		e = NULL;
-		gcElems(& e, 1);
-	}
-	u_success("test1");
+    init_elems();
+    for(int i=0; i < 1001; i++) {
+        struct elem *e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
+
+        e->val = i;
+        e->next = 0;
+        e = NULL;
+        gc_elems(&e, 1);
+    }
+    u_success("test1");
 }

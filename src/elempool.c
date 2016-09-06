@@ -41,7 +41,7 @@ void gc_elems(struct elem **heads, int nbheads) {
     /* ajouter votre code ici / add your code here */
 }
 
-void initElems() {
+void init_elems() {
     bt1k_reset();
     if (memoire_elem_pool == NULL) {
         memoire_elem_pool = malloc(1000 * sizeof(struct elem));

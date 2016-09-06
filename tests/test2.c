@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,7 +15,7 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "utest.h"
@@ -25,79 +25,80 @@
 
 void test2(void)
 {
-	initElems();
-	/* Allocate all the 1000 elements */
-	struct Elem *head = NULL;
-	struct Elem *e = 0;
-	for(int i=0; i < 1000; i++) {
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = head;
-		head = e;
-	}
+    init_elems();
 
-	
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* Allocate all the 1000 elements */
+    struct elem *head = NULL;
+    struct elem *e = 0;
+    for (int i = 0; i < 1000; i++) {
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
 
-	/* check the list */
-	e = head;
-	for(int j = 0; j < 1000; j++) {
-		u_assert("incoherent val field in Elem",
-			 e->val == (1000 -j - 1));
-		e = e->next;
-	}
-	u_isnull("incoherent end of list", e);
+        e->val = i;
+        e->next = head;
+        head = e;
+    }
 
-	/* No element should be freed as all are in the list */
-	gcElems(& head, 1);
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
 
-	/* No element should be freed */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* check the list */
+    e = head;
+    for (int j = 0; j < 1000; j++) {
+        u_assert("incoherent val field in elem",
+                 e->val == (1000 - j - 1));
+        e = e->next;
+    }
+    u_isnull("incoherent end of list", e);
 
-	/* check the list */
-	e = head;
-	for(int j = 0; j < 1000; j++) {
-		u_assert("incoherent val field in Elem",
-			 e->val == (1000 -j - 1));
-		e = e->next;
-	}
-	u_isnull("incoherent end of list", e);
-	
-	/* free all elements */
-	head = NULL;
-	gcElems(& head, 1);
-		
-		
-	/* Allocate all the 1000 elements */
-	for(int i=0; i < 1000; i++) {
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = head;
-		head = e;
-	}
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* No element should be freed as all are in the list */
+    gc_elems(&head, 1);
 
-	/* check the list */
-	e = head;
-	for(int j = 0; j < 1000; j++) {
-		u_assert("incoherent val field in Elem",
-			 e->val == (1000 -j - 1));
-		e = e->next;
-	}
-	u_isnull("incoherent end of list", e);
-	
-	/* free all elements */
-	head = NULL;
-	gcElems(& head, 1);
+    /* No element should be freed */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
 
-	u_success("test2");
+    /* check the list */
+    e = head;
+    for (int j = 0; j < 1000; j++) {
+        u_assert("incoherent val field in elem",
+                 e->val == (1000 - j - 1));
+        e = e->next;
+    }
+    u_isnull("incoherent end of list", e);
+
+    /* free all elements */
+    head = NULL;
+    gc_elems(&head, 1);
+
+
+    /* Allocate all the 1000 elements */
+    for (int i = 0; i < 1000; i++) {
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
+
+        e->val = i;
+        e->next = head;
+        head = e;
+    }
+
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
+
+    /* check the list */
+    e = head;
+    for (int j = 0; j < 1000; j++) {
+        u_assert("incoherent val field in elem",
+                 e->val == (1000 - j - 1));
+        e = e->next;
+    }
+    u_isnull("incoherent end of list", e);
+
+    /* free all elements */
+    head = NULL;
+    gc_elems(&head, 1);
+
+    u_success("test2");
 }

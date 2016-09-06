@@ -34,6 +34,20 @@ void inversion_liste(struct elem **liste) {
     /**
        Votre code est à mettre ici !
     */
+    if (liste == NULL || *liste == NULL) {
+        return;
+    }
+
+    struct elem *cur = *liste;
+    struct elem *next = cur->next;
+
+    while (next != NULL) {
+        struct elem *next_next = next->next;
+        next->next = cur;
+        cur = next;
+        next = next_next;
+    }
+    *liste = cur;
 }
 
 const int TAILLE = 100;
