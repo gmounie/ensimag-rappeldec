@@ -18,6 +18,8 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#define RECURSIVE
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
@@ -111,7 +113,6 @@ void inversion_liste(struct elem **liste)
 	*liste = reverse(*liste);
 }
 #endif
->>>>>>> Stashed changes
 
 const int TAILLE = 100;
 
