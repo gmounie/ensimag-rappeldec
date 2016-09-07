@@ -23,15 +23,15 @@ def test_binaires
 
     a = @pty_read.expect(/51/m, 1) # attendre 1 seconde max
     if a.nil?
-      puts "Valeur 1 attendue: '51'"
+      puts "Valeur 1 attendue: '49'"
     end
     a = @pty_read.expect(/112/m, 1) # attendre 1 seconde max
     if a.nil?
-      puts "Valeur 2 attendue: '112'"
+      puts "Valeur 2 attendue: '10'"
     end
     a = @pty_read.expect(/193/m, 1) # attendre 1 seconde max
     if a.nil?
-      puts "Valeur 3 attendue: '193'"
+      puts "Valeur 3 attendue: '197'"
     end
 end
 
