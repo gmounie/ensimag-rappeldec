@@ -21,15 +21,15 @@ require "pty"
 def test_binaires
     @pty_read, @pty_write, @pty_pid = PTY.spawn("../build/binaires")
 
-    a = @pty_read.expect(/51/m, 1) # attendre 1 seconde max
+    a = @pty_read.expect(/49/m, 1) # attendre 1 seconde max
     if a.nil?
       puts "Valeur 1 attendue: '49'"
     end
-    a = @pty_read.expect(/112/m, 1) # attendre 1 seconde max
+    a = @pty_read.expect(/10/m, 1) # attendre 1 seconde max
     if a.nil?
       puts "Valeur 2 attendue: '10'"
     end
-    a = @pty_read.expect(/193/m, 1) # attendre 1 seconde max
+    a = @pty_read.expect(/197/m, 1) # attendre 1 seconde max
     if a.nil?
       puts "Valeur 3 attendue: '197'"
     end
