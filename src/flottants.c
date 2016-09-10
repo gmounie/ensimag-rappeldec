@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include "abmc.h"
 
@@ -15,4 +16,6 @@ int main(int argc, char **argv) {
 	long double lda=0.111111L, ldb=0.222222L, ldc=0.333333L;
 	printf("%Le\n", ldabmc(lda, ldb, ldc));
 
+	return EXIT_SUCCESS;
 } 
+

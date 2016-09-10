@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,19 +15,19 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef ELEM_H
 #define ELEM_H
 
-struct Elem {
-	int val;
-	struct Elem *next;
+struct elem {
+    int val;
+    struct elem *next;
 };
 
-extern struct Elem* allocElem();
-extern void gcElems( struct Elem ** heads, int nbheads);
-extern void initElems();
+extern struct elem *alloc_elem(void);
+extern void gc_elems(struct elem **heads, int nbheads);
+extern void init_elems(void);
 
 #endif

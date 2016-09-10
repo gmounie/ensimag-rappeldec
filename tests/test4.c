@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,75 +15,74 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-   
 
 #include "utest.h"
 #include "../src/elempool.h"
 
-
 void test4(void)
-{  
-	initElems();
-	/* Allocate all the 1000 elements */
-	struct Elem *heads[1000] = {};
-	struct Elem *e;
+{
+    init_elems();
+    /* Allocate all the 1000 elements */
+    struct elem *heads[1000] = {};
+    struct elem *e;
 
-	for(int i=0; i < 1000; i++) {
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = heads[i];
-		heads[i] = e;
-	}
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    for (int i = 0; i < 1000; i++) {
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
 
-	/* check the list */
-	for(int i = 0; i < 1000; i++) {
-		u_assert("incoherent val field in Elem",
-			 heads[i]->val == i);
-		u_isnull("incoherent next field in Elem",
-			 heads[i]->next);
-	}
+        e->val = i;
+        e->next = heads[i];
+        heads[i] = e;
+    }
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
 
-	/* free none of the elements */
-	gcElems(heads, 1000);
+    /* check the list */
+    for (int i = 0; i < 1000; i++) {
+        u_assert("incoherent val field in elem",
+                 heads[i]->val == i);
+        u_isnull("incoherent next field in elem",
+                 heads[i]->next);
+    }
 
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* free none of the elements */
+    gc_elems(heads, 1000);
 
-	/* free half of the elements */
-	gcElems(heads, 500);
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
 
-	/* allocate 500 elements */
-	for(int i=500; i < 1000; i++) {
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = 0;
-		heads[i] = e;
-	}
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* free half of the elements */
+    gc_elems(heads, 500);
 
-	/* check the list */
-	for(int i = 0; i < 1000; i++) {
-		u_assert("incoherent val field in Elem",
-			 heads[i]->val == i);
-		u_isnull("incoherent next field in Elem",
-			 heads[i]->next);
-	}
-	
-	/* free all elements */
-	heads[0] = 0;
-	gcElems(heads, 0);
-	
-	u_success("test4");
+    /* allocate 500 elements */
+    for (int i = 500; i < 1000; i++) {
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
+
+        e->val = i;
+        e->next = 0;
+        heads[i] = e;
+    }
+
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
+
+    /* check the list */
+    for (int i = 0; i < 1000; i++) {
+        u_assert("incoherent val field in elem",
+                 heads[i]->val == i);
+        u_isnull("incoherent next field in elem",
+                 heads[i]->next);
+    }
+
+    /* free all elements */
+    heads[0] = 0;
+    gc_elems(heads, 0);
+
+    u_success("test4");
 }

@@ -29,9 +29,24 @@ struct elem {
     struct elem *next;
 };
 
+
+/* Affiche les éléments de la liste passée en paramètre sur la sortie
+ * standard. */
+void affichage_liste(struct elem *liste)
+{
+    for (struct elem * courant = liste; courant != NULL;
+         courant = courant->next) {
+        printf("%u ", courant->val);
+    }
+    printf("\n");
+}
+
 /* Crée une liste simplement chainée à partir des nb_elems éléments du
  * tableau valeurs. */
-struct elem *creation_liste(int *valeurs, size_t nb_elems) {
+/* Crée une liste simplement chainée à partir des nb_elems éléments du
+ * tableau valeurs. */
+struct elem *creation_liste(int *valeurs, size_t nb_elems)
+{
     assert(nb_elems != 0 && valeurs != NULL);
     struct elem *tete = calloc(1, sizeof(struct elem));
     tete->val = valeurs[0];
@@ -47,7 +62,8 @@ struct elem *creation_liste(int *valeurs, size_t nb_elems) {
 }
 
 /* Libère toute la mémoire associée à la liste passée en paramètre. */
-void destruction_liste(struct elem *liste) {
+void destruction_liste(struct elem *liste)
+{
     struct elem *courant = liste;
     while (courant != NULL) {
         struct elem *suivant = courant->next;
@@ -56,23 +72,14 @@ void destruction_liste(struct elem *liste) {
     }
 }
 
-/* Affiche les éléments de la liste passée en paramètre sur la sortie
- * standard. */
-void affichage_liste(struct elem *liste) {
-    for (struct elem *courant = liste; courant != NULL; courant = courant->next) {
-        printf("%u ", courant->val);
-    }
-    printf("\n");
-}
 
 /* Inverse la liste simplement chainée passée en paramètre. Le
  * paramètre liste contient l'adresse du pointeur sur la tête de liste
  * à inverser. */
+
 #if !defined RECURSIVE
-void inversion_liste(struct elem **liste) {
-    /**
-       Votre code est à mettre ici !
-    */
+void inversion_liste(struct elem **liste)
+{
     if (liste == NULL || *liste == NULL) {
         return;
     }
@@ -93,26 +100,27 @@ void inversion_liste(struct elem **liste) {
 #else
 struct elem *reverse(struct elem *head)
 {
-	struct elem *tmp;
-	if (head == NULL || head->next == NULL)
-           return head;
+    struct elem *tmp;
+    if (head == NULL || head->next == NULL)
+        return head;
 
-	tmp = reverse(head->next);
-        head->next->next = head;
-        head->next = NULL;
-	return tmp;
+    tmp = reverse(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return tmp;
 }
 
 void inversion_liste(struct elem **liste)
 {
-	/**
+        /**
 	   Votre code est à mettre ici !
 	*/
-        if (liste == NULL || *liste == NULL)
-                return;
-	*liste = reverse(*liste);
+    if (liste == NULL || *liste == NULL)
+        return;
+    *liste = reverse(*liste);
 }
 #endif
+
 
 const int TAILLE = 100;
 
@@ -144,7 +152,8 @@ int main(void)
 
     struct elem *tmp;
     int idx;
-    for (tmp = tab_elem, idx = TAILLE - 1; tmp != NULL; --idx, tmp = tmp->next) {
+    for (tmp = tab_elem, idx = TAILLE - 1; tmp != NULL;
+         --idx, tmp = tmp->next) {
         assert(tmp->val == idx);
     }
 

@@ -1,5 +1,5 @@
-#include <complex.h>
 #include <stdlib.h>
+#include <complex.h>
 #include <assert.h>
 #include <stdio.h>
 
@@ -18,28 +18,32 @@ int triarg(const void *a, const void *b) {
 		return 0;
 	return 1;
 }
+const int TAILLE = 100;
 
-int main(int argc, char **argv) {
-	(void) argc;
-	(void) argv;
+int main(void)
+{
+    /* initialisation du tableau */
+    float complex tableau[TAILLE];
+    srand48(123456);
+    for(int i = 0; i < TAILLE; i++) {
+        tableau[i] = drand48() + (drand48() * 1.0i);
+    }
 
-	/* initialisation du tableau */
-	float complex tableau[100];
-	srand48(123456);
-	for(int i=0; i < 100; i++) {
-		tableau[i] = drand48() + (drand48() * 1.0i);  
-	}
+    /**
+       Mettre le code d'appel de qsort ici
+    */
 
 	/**
 	   Mettre le code d'appel de qsort ici
 	*/
 	qsort(tableau, 100, sizeof(float complex), triarg);
 
-	/**
-	   Vérification du tri
-	*/
-	for(int i=0; i < 100-1; i++) {
-		assert(carg(tableau[i]) <= carg(tableau[i+1]));
-	}
-	return 0;
-} 
+    /**
+       Vérification du tri
+    */
+    for(int i = 0; i < TAILLE - 1; i++) {
+        assert(carg(tableau[i]) <= carg(tableau[i+1]));
+    }
+
+    return EXIT_SUCCESS;
+}

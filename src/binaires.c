@@ -1,10 +1,10 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <inttypes.h>
 
-static unsigned long long X=123456ULL;
+static unsigned long long X = 123456ULL;
 
 unsigned char crand48() {
-
 #if 0
 	X = (0x5DEEDE66DULL * X + 0xBULL) & ((1ULL <<48) - 1);
 	unsigned char c = ((X & 0xFF00000000ULL) >> 32);
@@ -19,14 +19,11 @@ unsigned char crand48() {
 #endif
 }
 
+int main(void)
+{
+    printf("%hhu\n", crand48());
+    printf("%hhu\n", crand48());
+    printf("%hhu\n", crand48());
 
-int main(int argc, char **argv) {
-	(void) argc;
-	(void) argv;
-
-	printf("%hhu\n", crand48());
-	printf("%hhu\n", crand48());
-	printf("%hhu\n", crand48());
-	
-	return 0;
-} 
+    return EXIT_SUCCESS;
+}

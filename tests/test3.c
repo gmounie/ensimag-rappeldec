@@ -1,6 +1,6 @@
 /**
-   Copyright (C) 2015-2016 by Gregory Mounie 
-   
+   Copyright (C) 2015-2016 by Gregory Mounie
+
    This file is part of RappelDeC
 
    RappelDeC is free software: you can redistribute it and/or modify it
@@ -15,7 +15,7 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "utest.h"
@@ -24,54 +24,54 @@
 
 void test3(void)
 {
-	initElems();
-	struct Elem *head = NULL;
-	struct Elem *e;
+    init_elems();
+    struct elem *head = NULL;
+    struct elem *e;
 
-	/* allocate 2 * 500 but chain only one other 2 */
-	for(int i=0; i < 500; i++) {
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = head;
-		head = e;
-	}
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* allocate 2 * 500 but chain only one other 2 */
+    for (int i = 0; i < 500; i++) {
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
 
-	/* free the 500 elems not in the liste */
-	gcElems( & head, 1);
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
 
-	/* allocate 500 and chain them */	
-	for(int i=0; i < 500; i++) {
-		e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
+        e->val = i;
+        e->next = head;
+        head = e;
+    }
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
 
-		e->val = 500 + i;
-		e->next = head;
-		head = e;
-	}
-	/* No element should be free */
-	e = allocElem();
-	u_isnull("unexpected allocation success", e);
+    /* free the 500 elems not in the liste */
+    gc_elems(&head, 1);
 
-	/* check the list */
-	e = head;
-	for(int j = 0; j < 1000; j++) {
-		u_assert("incoherent val field in Elem",
-			 e->val == (1000 -j - 1));
-		e = e->next;
-	}
-	u_isnull("incoherent end of list", e);
+    /* allocate 500 and chain them */
+    for (int i = 0; i < 500; i++) {
+        e = alloc_elem();
+        u_isnotnull("unexpected allocation failure", e);
 
-	/* free all elements */
-	head = NULL;
-	gcElems(& head, 1);
+        e->val = 500 + i;
+        e->next = head;
+        head = e;
+    }
+    /* No element should be free */
+    e = alloc_elem();
+    u_isnull("unexpected allocation success", e);
 
-	u_success("test3");
+    /* check the list */
+    e = head;
+    for (int j = 0; j < 1000; j++) {
+        u_assert("incoherent val field in elem",
+                 e->val == (1000 - j - 1));
+        e = e->next;
+    }
+    u_isnull("incoherent end of list", e);
+
+    /* free all elements */
+    head = NULL;
+    gc_elems(& head, 1);
+
+    u_success("test3");
 }
