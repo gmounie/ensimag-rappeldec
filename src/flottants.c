@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
 	double da=0.1, db=0.2, dc=0.3;
 	printf("%e\n", dabmc(da, db, dc));
 
-	long double lda=0.111111L, ldb=0.222222L, ldc=0.333333L;
+	long double lda=0.1L, ldb=0.2L, ldc=0.3L;
 	printf("%Le\n", ldabmc(lda, ldb, ldc));
 
 	return EXIT_SUCCESS;
