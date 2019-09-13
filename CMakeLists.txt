@@ -6,8 +6,8 @@ endif(COMMAND cmake_policy)
 project(EnsimagRappelDeC)
 enable_testing()
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -Wall -std=gnu11 -fsanitize=undefined -fsanitize-address-use-after-scope")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -Wall -std=gnu++11 -fsanitize=undefined -fsanitize-address-use-after-scope")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Wconversion -std=gnu11 -fsanitize-address-use-after-scope")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wconversion -std=gnu++11 -fsanitize-address-use-after-scope")
 
 
 #########
