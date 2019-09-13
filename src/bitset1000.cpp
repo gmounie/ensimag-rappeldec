@@ -30,13 +30,13 @@ void bt1k_reset() {
     bitfield.reset();;
 }
 
-void bt1k_set(int n, bool val) {
+void bt1k_set(long int n, bool val) {
     assert(n >= 0 && n < 1000);
 
     bitfield[n] = val;
 }
 
-bool bt1k_get(int n) {
+bool bt1k_get(long int n) {
     assert(n >= 0 && n < 1000);
 
     return bitfield[n];

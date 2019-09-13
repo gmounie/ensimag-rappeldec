@@ -25,7 +25,7 @@
 #include <assert.h>
 
 struct elem {
-    int val;
+    long unsigned int val;
     struct elem *next;
 };
 
@@ -43,9 +43,7 @@ void affichage_liste(struct elem *liste)
 
 /* Crée une liste simplement chainée à partir des nb_elems éléments du
  * tableau valeurs. */
-/* Crée une liste simplement chainée à partir des nb_elems éléments du
- * tableau valeurs. */
-struct elem *creation_liste(int *valeurs, size_t nb_elems)
+struct elem *creation_liste(long unsigned int *valeurs, size_t nb_elems)
 {
     assert(nb_elems != 0 && valeurs != NULL);
     struct elem *tete = calloc(1, sizeof(struct elem));
@@ -122,7 +120,7 @@ void inversion_liste(struct elem **liste)
 #endif
 
 
-const int TAILLE = 100;
+const long unsigned int TAILLE = 100;
 
 int main(void)
 {
@@ -136,7 +134,7 @@ int main(void)
     e3.next = NULL;
     affichage_liste(&e1);
 
-    int valeurs[TAILLE];
+    long unsigned int valeurs[TAILLE];
     for (size_t i = 0; i < TAILLE; i++) {
         valeurs[i] = i;
     }
@@ -151,7 +149,8 @@ int main(void)
     affichage_liste(tab_elem);
 
     struct elem *tmp;
-    int idx;
+
+    long unsigned int idx;
     for (tmp = tab_elem, idx = TAILLE - 1; tmp != NULL;
          --idx, tmp = tmp->next) {
         assert(tmp->val == idx);
