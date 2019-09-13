@@ -26,8 +26,8 @@ extern "C" {
 #endif
 
 #include <stdbool.h>
-  bool bt1k_get(long int n);
-  void bt1k_set(long int n, bool val);
+  bool bt1k_get(long unsigned int n);
+  void bt1k_set(long unsigned int n, bool val);
   void bt1k_reset();
 
 #ifdef __cplusplus
