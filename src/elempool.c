@@ -53,7 +53,7 @@ void gc_elems( struct elem ** heads, int nbheads) {
 		struct elem *tete= heads[i];
 		while(tete) {
 			struct elem *base = (struct elem *) memoire_elem_pool;
-			assert(tete - base > 0);
+			assert(tete - base >= 0);
 			long unsigned int idx = (long unsigned int)(tete - base);
 			bt1k_set(idx, true);
 			tete = tete->next;
