@@ -20,6 +20,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include "elempool.h"
 #include "bitset1000.h"
 
@@ -30,7 +31,7 @@ static unsigned char *memoire_elem_pool = 0;
 */
 struct elem* alloc_elem() {
 	/* ajouter votre code ici / add your code here */
-	for(int i=0; i< 1000; i++) {
+	for(long unsigned int i=0; i< 1000; i++) {
 		if (! bt1k_get(i)) {
 			bt1k_set(i, true);
 			struct elem *tmp = (struct elem *) memoire_elem_pool;
@@ -52,7 +53,8 @@ void gc_elems( struct elem ** heads, int nbheads) {
 		struct elem *tete= heads[i];
 		while(tete) {
 			struct elem *base = (struct elem *) memoire_elem_pool;
-			long unsigned int idx = tete - base;
+			assert(tete - base > 0);
+			long unsigned int idx = (long unsigned int)(tete - base);
 			bt1k_set(idx, true);
 			tete = tete->next;
 		}
