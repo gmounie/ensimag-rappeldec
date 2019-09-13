@@ -11,7 +11,7 @@ const int TAILLE = 100;
 int main(void)
 {
     /* initialisation du tableau */
-    float complex tableau[TAILLE];
+    double complex tableau[TAILLE];
     srand48(123456);
     for(int i = 0; i < TAILLE; i++) {
         tableau[i] = drand48() + (drand48() * 1.0i);
