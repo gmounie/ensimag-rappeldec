@@ -52,7 +52,7 @@ void gc_elems( struct elem ** heads, int nbheads) {
 		struct elem *tete= heads[i];
 		while(tete) {
 			struct elem *base = (struct elem *) memoire_elem_pool;
-			int idx = tete - base;
+			long unsigned int idx = tete - base;
 			bt1k_set(idx, true);
 			tete = tete->next;
 		}

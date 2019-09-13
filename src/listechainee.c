@@ -36,7 +36,7 @@ void affichage_liste(struct elem *liste)
 {
     for (struct elem * courant = liste; courant != NULL;
          courant = courant->next) {
-        printf("%u ", courant->val);
+        printf("%lu ", courant->val);
     }
     printf("\n");
 }

@@ -8,10 +8,10 @@
 */
 
 int triarg(const void *a, const void *b) {
-	float complex const * ca = a;
-	float complex const * cb = b;
+	double complex const * ca = a;
+	double complex const * cb = b;
 
-	float tmp = (carg(*ca) - carg(*cb));
+	double tmp = (carg(*ca) - carg(*cb));
 	if (tmp < 0.0)
 		return -1;
 	if (tmp == 0.0)
@@ -23,7 +23,7 @@ const int TAILLE = 100;
 int main(void)
 {
     /* initialisation du tableau */
-    float complex tableau[TAILLE];
+    double complex tableau[TAILLE];
     srand48(123456);
     for(int i = 0; i < TAILLE; i++) {
         tableau[i] = drand48() + (drand48() * 1.0i);
@@ -36,7 +36,7 @@ int main(void)
 	/**
 	   Mettre le code d'appel de qsort ici
 	*/
-	qsort(tableau, 100, sizeof(float complex), triarg);
+	qsort(tableau, 100, sizeof(double complex), triarg);
 
     /**
        Vérification du tri
