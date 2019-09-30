@@ -80,8 +80,20 @@ int main(void)
     for (size_t i = 0; i < TAILLE; i++) {
         valeurs[i] = i;
     }
+
     struct elem *tab_elem = creation_liste(valeurs, TAILLE);
     assert(tab_elem != NULL);
+
+    /* Test que la liste dans l'ordre */
+    struct elem *tmp;
+    long unsigned int idx;
+    for (tmp = tab_elem, idx = 0;
+	 tmp != NULL;
+	 idx++, tmp = tmp->next) {
+        assert(tmp->val == idx);
+    }
+    /* Test que la liste est complète (à la suite du test sur l'ordre) */
+    assert(idx == TAILLE);
 
     printf("Liste créée:\n");
     affichage_liste(tab_elem);
@@ -90,12 +102,12 @@ int main(void)
     printf("Liste inversée:\n");
     affichage_liste(tab_elem);
 
-    struct elem *tmp;
-    long unsigned int idx;
+    /* Vérifie que la liste est inversée et complète */
     for (tmp = tab_elem, idx = TAILLE - 1; tmp != NULL; --idx, tmp = tmp->next) {
         assert(tmp->val == idx);
     }
-
+    assert(idx == (long unsigned int)(0UL - 1));
+    
     /* Pour tester le bon fonctionnement de la fonction suivante, on
      * lancera valgrind sur le programme pour vérifier qu'aucune fuite
      * mémoire n'est présente. */
