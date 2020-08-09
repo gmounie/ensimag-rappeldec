@@ -95,7 +95,7 @@ void inversion_liste(struct elem **liste)
 
     *liste = cur;
 }
-#else
+#else // BAD: will fail on large list
 struct elem *reverse(struct elem *head)
 {
     struct elem *tmp;
@@ -107,7 +107,7 @@ struct elem *reverse(struct elem *head)
     head->next = NULL;
     return tmp;
 }
-
+// BAD: will fail on large list
 void inversion_liste(struct elem **liste)
 {
         /**
