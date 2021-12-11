@@ -1,0 +1,25 @@
+#+TITLE: Put here ideas to improve
+* Add some bonus exercises
+* Add an exercise to understand the copy part of parameters
+* Add an exercise to differentiate stack and heap allocation and lifespan
+  - Deconstruct the faulty python allocator pattern: creating a stack
+    variable including an auto-pointer in the struct and copy it
+* Add an exercise with compilation in clang and gcc to differentiate stack variable behavior
+  return struct and observe difference in local stack (clang shift
+  stack at every new varaible meaning almost useful with clang with
+  fonctional pattern (still faulty) and gcc allocating at once.
+* Add an exercise with a real gc
+* add a git branch with an autoconf/automake build
+* try =cgreen= unitary test
+  Behavior Driven Development
+  Séparation par fork
+* try =check= unitary test
+  Séparation par fork
+* Add a bonus exercise with xoshiro+ RNG
+  fast, small simple, in julia 1.7 (default, allow multi-threads
+  reproducibility) and part of java.util.random of Java 17+. ACM Article.
+  https://vigna.di.unimi.it/papers.php#BlVSLPNG
+  
+  Page 4 du PDF, code C en 9 lignes, mais utilise rotl (rotation, qui
+  est reconnu par le compilateur et une instruction du processeur.
+  
