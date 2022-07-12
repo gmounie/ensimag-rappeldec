@@ -18,7 +18,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define RECURSIVE
+// #define RECURSIVE
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -76,6 +76,12 @@ void destruction_liste(struct elem *liste)
  * à inverser. */
 
 #if !defined RECURSIVE
+void debug_inversion(struct elem *h1, struct elem *h2) {
+    printf("head1= %p, head2= %p\n", h1, h2);
+    affichage_liste(h1);
+    affichage_liste(h2);
+}
+
 void inversion_liste(struct elem **liste)
 {
     if (liste == NULL || *liste == NULL) {
