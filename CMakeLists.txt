@@ -1,14 +1,12 @@
-cmake_minimum_required(VERSION 2.6)
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+cmake_minimum_required(VERSION 3.20)
 
 project(EnsimagRappelDeC)
 enable_testing()
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Wconversion -std=gnu11 -fsanitize-address-use-after-scope")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wconversion -std=gnu++11 -fsanitize-address-use-after-scope")
 
+# alternative: add to the two debug flags: -fsanitize=address -fanalyzer
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Wconversion -std=gnu18")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wconversion -std=gnu++17")
 
 #########
 # Gestion des logins
@@ -22,7 +20,6 @@ set(LOGINS login1)
 if (LOGINS MATCHES "login1")
   message(FATAL_ERROR "** ERREUR / ERROR **: Vous devez modifier CMakeLists.txt pour remplacer login1 par votre login / Substitute login1 with your own login in CMakeLists.txt")
 endif()
-
 
 
 ##
@@ -43,19 +40,19 @@ add_executable(flottants src/flottants.c)
 add_executable(fqsort src/fqsort.c)
 target_link_libraries(fqsort m)
 
-###
-# Ensimag CentOS 6: utilisation du compilateur installé pour Ada,
-# beaucoup plus récent.
-##
-if(EXISTS /opt/gnat/bin/g++)
-  set(CMAKE_CXX_COMPILER /opt/gnat/bin/g++)
-endif(EXISTS /opt/gnat/bin/g++)
-if(EXISTS /opt/gnat/bin/gcc)
-  set(CMAKE_C_COMPILER /opt/gnat/bin/gcc)
-endif(EXISTS /opt/gnat/bin/gcc)
+# bug demonstration programs
+add_executable(bug_assert src/bugs/bug_assert.c)
+add_executable(bug_doublefree src/bugs/bug_doublefree.c)
+add_executable(bug_stackallocthenfree src/bugs/bug_stackallocthenfree.c)
+add_executable(bug_stackoverflow src/bugs/bug_stackoverflow.c)
+add_executable(bug_overreadheap_tiny src/bugs/bug_overreadheap_tiny.c)
+add_executable(bug_overwriteheap_tiny src/bugs/bug_overwriteheap_tiny.c)
+add_executable(bug_overwriteheap_large src/bugs/bug_overwriteheap_large.c)
+add_executable(bug_allocinstack src/bugs/bug_allocinstack.c)
+add_executable(bug_loop src/bugs/bug_loop.c)
 
 ##
-# Programme de test
+# Test program
 ##
 add_test(ListeChainee ${CMAKE_BINARY_DIR}/listechainee)
 add_test(valgrindListeChainee valgrind ${CMAKE_BINARY_DIR}/listechainee)
