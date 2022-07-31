@@ -18,71 +18,66 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "utest.h"
 #include "../src/elempool.h"
+#include "utest.h"
 
-void test4(void)
-{
-    init_elems();
-    /* Allocate all the 1000 elements */
-    struct elem *heads[1000] = {};
-    struct elem *e;
+void test4(void) {
+  init_elems();
+  /* Allocate all the 1000 elements */
+  struct elem *heads[1000] = {};
+  struct elem *e;
 
-    for (int i = 0; i < 1000; i++) {
-        e = alloc_elem();
-        u_isnotnull("unexpected allocation failure", e);
-
-        e->val = i;
-        e->next = heads[i];
-        heads[i] = e;
-    }
-    /* No element should be free */
+  for (int i = 0; i < 1000; i++) {
     e = alloc_elem();
-    u_isnull("unexpected allocation success", e);
+    u_isnotnull("unexpected allocation failure", e);
 
-    /* check the list */
-    for (int i = 0; i < 1000; i++) {
-        u_assert("incoherent val field in elem",
-                 heads[i]->val == i);
-        u_isnull("incoherent next field in elem",
-                 heads[i]->next);
-    }
+    e->val = i;
+    e->next = heads[i];
+    heads[i] = e;
+  }
+  /* No element should be free */
+  e = alloc_elem();
+  u_isnull("unexpected allocation success", e);
 
-    /* free none of the elements */
-    gc_elems(1000, heads);
+  /* check the list */
+  for (int i = 0; i < 1000; i++) {
+    u_assert("incoherent val field in elem", heads[i]->val == i);
+    u_isnull("incoherent next field in elem", heads[i]->next);
+  }
 
-    /* No element should be free */
+  /* free none of the elements */
+  gc_elems(1000, heads);
+
+  /* No element should be free */
+  e = alloc_elem();
+  u_isnull("unexpected allocation success", e);
+
+  /* free half of the elements */
+  gc_elems(500, heads);
+
+  /* allocate 500 elements */
+  for (int i = 500; i < 1000; i++) {
     e = alloc_elem();
-    u_isnull("unexpected allocation success", e);
+    u_isnotnull("unexpected allocation failure", e);
 
-    /* free half of the elements */
-    gc_elems(500, heads);
+    e->val = i;
+    e->next = 0;
+    heads[i] = e;
+  }
 
-    /* allocate 500 elements */
-    for (int i = 500; i < 1000; i++) {
-        e = alloc_elem();
-        u_isnotnull("unexpected allocation failure", e);
+  /* No element should be free */
+  e = alloc_elem();
+  u_isnull("unexpected allocation success", e);
 
-        e->val = i;
-        e->next = 0;
-        heads[i] = e;
-    }
+  /* check the list */
+  for (int i = 0; i < 1000; i++) {
+    u_assert("incoherent val field in elem", heads[i]->val == i);
+    u_isnull("incoherent next field in elem", heads[i]->next);
+  }
 
-    /* No element should be free */
-    e = alloc_elem();
-    u_isnull("unexpected allocation success", e);
+  /* free all elements */
+  heads[0] = 0;
+  gc_elems(0, heads);
 
-    /* check the list */
-    for (int i = 0; i < 1000; i++) {
-        u_assert("incoherent val field in elem",
-                 heads[i]->val == i);
-        u_isnull("incoherent next field in elem",
-                 heads[i]->next);
-    }
-
-    /* free all elements */
-    heads[0] = 0;
-    gc_elems(0, heads);
-
-    u_success("test4");
+  u_success("test4");
 }

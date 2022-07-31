@@ -18,21 +18,19 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "utest.h"
 #include "../src/elempool.h"
+#include "utest.h"
 
+void test1(void) {
+  init_elems();
+  for (int i = 0; i < 1001; i++) {
+    struct elem *e = alloc_elem();
+    u_isnotnull("unexpected allocation failure", e);
 
-void test1(void)
-{
-    init_elems();
-    for(int i=0; i < 1001; i++) {
-        struct elem *e = alloc_elem();
-        u_isnotnull("unexpected allocation failure", e);
-
-        e->val = i;
-        e->next = 0;
-        e = NULL;
-        gc_elems(1, &e);
-    }
-    u_success("test1");
+    e->val = i;
+    e->next = 0;
+    e = NULL;
+    gc_elems(1, &e);
+  }
+  u_success("test1");
 }
