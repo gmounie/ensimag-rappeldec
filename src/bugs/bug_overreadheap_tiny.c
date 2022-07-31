@@ -29,7 +29,7 @@ void fibon(unsigned int size, unsigned int p[size]) { // C11 array args
 
 int main() {
     assert(NB > 2);
-    unsigned int *p = malloc( NB * sizeof(int));
+    unsigned int *p = malloc( sizeof( int[NB] ));
     assert(p != NULL);
 
     fibon(NB, p);
