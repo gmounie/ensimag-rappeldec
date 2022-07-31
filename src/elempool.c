@@ -49,7 +49,7 @@ struct elem *alloc_elem(void) {
    @param nbheads number of list heads in array heads
    @param heads array of list heads
 */
-void gc_elems(const int nbheads, struct elem const *const heads[nbheads]) {
+void gc_elems(const int nbheads, struct elem *const heads[nbheads]) {
   /* ajouter votre code ici / add your code here */
   bt1k_reset();
   for (int i = 0; i < nbheads; i++) {
