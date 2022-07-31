@@ -29,7 +29,7 @@ struct elem {
 
 /* Affiche les éléments de la liste passée en paramètre sur la sortie
  * standard. */
-void affichage_liste(struct elem *liste) {
+void affichage_liste(struct elem const *const liste) {
   /**
      Votre code est à mettre ici !
   */
@@ -39,7 +39,7 @@ void affichage_liste(struct elem *liste) {
 /* Crée une liste simplement chainée à partir des nb_elems éléments du
  * tableau valeurs. */
 struct elem *creation_liste(size_t nb_elems,
-                            long unsigned int valeurs[nb_elems]) {
+                            long unsigned int const valeurs[nb_elems]) {
   /**
      Votre code est à mettre ici !
   */
