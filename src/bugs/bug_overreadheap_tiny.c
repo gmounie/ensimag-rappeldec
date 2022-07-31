@@ -13,27 +13,27 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-const unsigned int NB= 100;
+const unsigned int NB = 100;
 
 void fibon(unsigned int size, unsigned int p[size]) { // C11 array args
-    for(unsigned int i=0; i< size; i++)
-	if (i < 1) // BUG: i < 2
-	    p[i] = i;
-	else
-	    p[i] = p[i-1] + p[i-2]; // BUG: read p[-1]
+  for (unsigned int i = 0; i < size; i++)
+    if (i < 1) // BUG: i < 2
+      p[i] = i;
+    else
+      p[i] = p[i - 1] + p[i - 2]; // BUG: read p[-1]
 }
 
 int main() {
-    assert(NB > 2);
-    unsigned int *p = malloc( sizeof( int[NB] ));
-    assert(p != NULL);
+  assert(NB > 2);
+  unsigned int *p = malloc(sizeof(int[NB]));
+  assert(p != NULL);
 
-    fibon(NB, p);
+  fibon(NB, p);
 
-    free(p);
-    return 0;
+  free(p);
+  return 0;
 }

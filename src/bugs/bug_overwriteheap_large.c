@@ -13,19 +13,18 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-const unsigned int SIZE= 10000; // size may be a misleading name
-
+const unsigned int SIZE = 10000; // size may be a misleading name
 
 /**
    fibon overwrite the array 4 times the length allocated by main
 
    Thanks to the C11 array size notation, gcc-12+ detects the bug and
    warns you ! Read the warnings ! Solve them !
-   
+
    Note that older or other compilers may miss it. Use as recent as
    possible compiler. Even for stable language as C, it is helpful.
 
@@ -39,21 +38,21 @@ const unsigned int SIZE= 10000; // size may be a misleading name
    @param p array of size "size"
  */
 void fibon(unsigned int size, unsigned int p[size]) {
-    for(unsigned int i=0; i<= size; i++)
-	if (i < 2)
-	    p[i] = i;
-	else
-	    p[i] = p[i-1] + p[i-2];
+  for (unsigned int i = 0; i <= size; i++)
+    if (i < 2)
+      p[i] = i;
+    else
+      p[i] = p[i - 1] + p[i - 2];
 }
 
 int main() {
-    assert(SIZE > 2);
-    
-    unsigned int *p = malloc( SIZE ); // BUG: sizeof( int[SIZE] ));
-    assert(p != NULL);
+  assert(SIZE > 2);
 
-    fibon(SIZE, p);
+  unsigned int *p = malloc(SIZE); // BUG: sizeof( int[SIZE] ));
+  assert(p != NULL);
 
-    free(p);
-    return 0;
+  fibon(SIZE, p);
+
+  free(p);
+  return 0;
 }

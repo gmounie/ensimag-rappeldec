@@ -16,26 +16,26 @@
 #include <stdio.h>
 
 typedef struct elem {
-    struct elem *next;
+  struct elem *next;
 } Elem;
 
 int functional_list_length(Elem *h) {
-    if (h == NULL)
-	return 0;
+  if (h == NULL)
+    return 0;
 
-    return 1 + functional_list_length(h->next);  // BUG: unbounded
-						 // recursivity thus
-						 // potential stack
-						 // overflow
+  return 1 + functional_list_length(h->next); // BUG: unbounded
+                                              // recursivity thus
+                                              // potential stack
+                                              // overflow
 }
 
 int main() {
-    // a circular list will trigger the bug
-    Elem a;
-    Elem b = { &a };
-    a = (Elem){& b};
-    Elem *head = &a;
+  // a circular list will trigger the bug
+  Elem a;
+  Elem b = {&a};
+  a = (Elem){&b};
+  Elem *head = &a;
 
-    printf("list length: %d\n", functional_list_length(head));
-    return 0;
+  printf("list length: %d\n", functional_list_length(head));
+  return 0;
 }
