@@ -1,4 +1,5 @@
 #include <inttypes.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 static unsigned long long X = 123456ULL;
