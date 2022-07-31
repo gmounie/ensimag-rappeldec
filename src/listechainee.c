@@ -31,7 +31,10 @@ struct elem {
 
 /* Affiche les éléments de la liste passée en paramètre sur la sortie
  * standard. */
-void affichage_liste(struct elem *liste) {
+void affichage_liste(struct elem const *const liste) {
+  /**
+     Votre code est à mettre ici !
+  */
   for (struct elem *courant = liste; courant != NULL; courant = courant->next) {
     printf("%lu ", courant->val);
   }
@@ -41,7 +44,10 @@ void affichage_liste(struct elem *liste) {
 /* Crée une liste simplement chainée à partir des nb_elems éléments du
  * tableau valeurs. */
 struct elem *creation_liste(size_t nb_elems,
-                            long unsigned int valeurs[nb_elems]) {
+                            long unsigned int const valeurs[nb_elems]) {
+  /**
+     Votre code est à mettre ici !
+  */
   assert(nb_elems != 0 && valeurs != NULL);
   struct elem *tete = calloc(1, sizeof(struct elem));
   tete->val = valeurs[0];

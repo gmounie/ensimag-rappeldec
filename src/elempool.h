@@ -27,7 +27,8 @@ struct elem {
 };
 
 extern struct elem *alloc_elem(void);
-extern void gc_elems(int nbheads, struct elem *heads[nbheads]);
+extern void gc_elems(const int nbheads,
+                     struct elem const *const heads[nbheads]);
 extern void init_elems(void);
 
 #endif
