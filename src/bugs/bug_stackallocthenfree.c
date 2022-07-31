@@ -19,7 +19,11 @@
 
 const unsigned int SIZE= 100;
 
-void fibon(unsigned int *p, unsigned int size) {
+void fibon(unsigned int size, unsigned int p[size]) { // Note: args
+						      // with C11
+						      // array
+						      // parameter
+						      // size
     for(unsigned int i=0; i< size; i++)
 	if (i < 2)
 	    p[i] = i;
@@ -34,7 +38,7 @@ int main() {
     unsigned int p[SIZE];
     assert(p != NULL);
 
-    fibon(p, SIZE);
+    fibon(SIZE, p);
 
     return 0;
 }

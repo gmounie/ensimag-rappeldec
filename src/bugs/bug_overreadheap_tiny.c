@@ -19,7 +19,7 @@
 
 const unsigned int NB= 100;
 
-void fibon(unsigned int *p, unsigned int size) {
+void fibon(unsigned int size, unsigned int p[size]) { // C11 array args
     for(unsigned int i=0; i< size; i++)
 	if (i < 1) // BUG: i < 2
 	    p[i] = i;
@@ -29,10 +29,10 @@ void fibon(unsigned int *p, unsigned int size) {
 
 int main() {
     assert(NB > 2);
-    unsigned int *p = malloc( NB * sizeof(int));
+    unsigned int *p = malloc( sizeof( int[NB] ));
     assert(p != NULL);
 
-    fibon(p, NB);
+    fibon(NB, p);
 
     free(p);
     return 0;
