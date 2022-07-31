@@ -30,8 +30,8 @@ void test0(void)
     e->val = 10;
     e->next = 0;
     /* free all the elements */
-    gc_elems(&e, 1);
+    gc_elems(1, &e);
     /* free all the elements */
-    gc_elems(&e, 0);
+    gc_elems(0, &e);
     u_success("test0");
 }

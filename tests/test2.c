@@ -53,7 +53,7 @@ void test2(void)
     u_isnull("incoherent end of list", e);
 
     /* No element should be freed as all are in the list */
-    gc_elems(&head, 1);
+    gc_elems(1, &head);
 
     /* No element should be freed */
     e = alloc_elem();
@@ -70,7 +70,7 @@ void test2(void)
 
     /* free all elements */
     head = NULL;
-    gc_elems(&head, 1);
+    gc_elems(1, &head);
 
 
     /* Allocate all the 1000 elements */
@@ -98,7 +98,7 @@ void test2(void)
 
     /* free all elements */
     head = NULL;
-    gc_elems(&head, 1);
+    gc_elems(1, &head);
 
     u_success("test2");
 }

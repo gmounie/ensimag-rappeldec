@@ -49,14 +49,14 @@ void test4(void)
     }
 
     /* free none of the elements */
-    gc_elems(heads, 1000);
+    gc_elems(1000, heads);
 
     /* No element should be free */
     e = alloc_elem();
     u_isnull("unexpected allocation success", e);
 
     /* free half of the elements */
-    gc_elems(heads, 500);
+    gc_elems(500, heads);
 
     /* allocate 500 elements */
     for (int i = 500; i < 1000; i++) {
@@ -82,7 +82,7 @@ void test4(void)
 
     /* free all elements */
     heads[0] = 0;
-    gc_elems(heads, 0);
+    gc_elems(0, heads);
 
     u_success("test4");
 }

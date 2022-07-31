@@ -36,15 +36,20 @@ struct elem *alloc_elem(void) {
 /**
    Fonction ramasse-miette sur les elements qui ne sont pas
    atteignables depuis les têtes de listes
+
+   @param nbheads number of list heads in array heads
+   @param heads array of list heads
 */
-void gc_elems(struct elem **heads, int nbheads) {
-    /* ajouter votre code ici / add your code here */
+void gc_elems(int nbheads, struct elem *heads[nbheads]) {
+	/* ajouter votre code ici / add your code here */
+	(void) nbheads; // to remove
+	(void) heads; // to remove
 }
 
 void init_elems() {
     bt1k_reset();
     if (memoire_elem_pool == NULL) {
-        memoire_elem_pool = malloc(1000 * sizeof(struct elem));
+        memoire_elem_pool = malloc( sizeof( struct elem[1000] ) );
     }
-    memset(memoire_elem_pool, 0, 1000 * sizeof(struct elem));
+    memset(memoire_elem_pool, 0, sizeof( struct elem[1000] ) );
 }

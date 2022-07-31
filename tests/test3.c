@@ -45,7 +45,7 @@ void test3(void)
     u_isnull("unexpected allocation success", e);
 
     /* free the 500 elems not in the liste */
-    gc_elems(&head, 1);
+    gc_elems(1, &head);
 
     /* allocate 500 and chain them */
     for (int i = 0; i < 500; i++) {
@@ -71,7 +71,7 @@ void test3(void)
 
     /* free all elements */
     head = NULL;
-    gc_elems(& head, 1);
+    gc_elems(1, & head);
 
     u_success("test3");
 }

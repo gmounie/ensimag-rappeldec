@@ -32,7 +32,7 @@ void test1(void)
         e->val = i;
         e->next = 0;
         e = NULL;
-        gc_elems(&e, 1);
+        gc_elems(1, &e);
     }
     u_success("test1");
 }
