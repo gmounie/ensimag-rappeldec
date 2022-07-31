@@ -13,11 +13,11 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <stdbool.h>
 #include <assert.h>
+#include <stdbool.h>
 
 int main() {
-    assert(false); // always fail
+  assert(false); // always fail
 
-    return 0;
+  return 0;
 }
