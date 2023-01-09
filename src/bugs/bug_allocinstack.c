@@ -25,14 +25,17 @@ typedef struct elem {
 // Read the warnings !
 Elem *new_Elem() {
   Elem a = {.next = NULL}; // BUG: Elem *a = malloc(sizeof(Elem));
-  Elem *p = &a;
-  p++;
-  p--;
-  return p; // BUG: return a;
+  {
+    Elem *p = 0;
+    p = &a;
+    p++;
+    p--;
+    return p; // BUG: return a;
+  }
 }
 
 int list_length(Elem *h) {
-  int l = 0;
+  long long int l = 0;
   while (h != NULL) {
     h = h->next;
     l++;
