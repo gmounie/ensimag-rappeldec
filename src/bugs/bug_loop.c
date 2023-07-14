@@ -35,14 +35,14 @@ int main(int argc, char **argv) {
   (void)argc;
 
   int mypid = getpid();
-  printf("My PID is: %d. Catch me with 'gdb %s %d' !\n", mypid, argv[0], mypid);
-
-  // circular list
+  printf("My PID is: %d. Catch me with 'gdb %s %d' !\n",
+	 mypid, argv[0], mypid);
+  // build a short and smallcircular list in stack
   Elem a;
-  Elem b = {&a};
-  a = (Elem){&b};
+  Elem b = {.next= &a};
+  a = (Elem){.next= &b};
   Elem *head = &a;
-
+  // infinite loop in list_length
   printf("list length: %lu\n", list_length(head));
   return 0;
 }
