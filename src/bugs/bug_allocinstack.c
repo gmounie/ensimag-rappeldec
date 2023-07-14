@@ -19,19 +19,16 @@ typedef struct elem {
   struct elem *next;
 } Elem;
 
-// Python programmers, with shallow understanding of Python heap
-// management, produce this kind of code in C.
-// GGC warns you ! Clangd detects that too in your IDE !
-// Read the warnings !
-Elem *new_Elem() {
+// Common Python pattern relicated in C by some Python programmers
+// with shallow understanding of the Python and C heap
+// management. Without the pointer arithmetic lines, GGC warns you !
+// Clangd detects that too in your IDE !  Read the warnings !
+Elem *Elem_new() {
   Elem a = {.next = NULL}; // BUG: Elem *a = malloc(sizeof(Elem));
-  {
-    Elem *p = 0;
-    p = &a;
-    p++;
-    p--;
-    return p; // BUG: return a;
-  }
+  Elem *p = &a;
+  p++; // to fool linters and compilers
+  p--; //to fool linters and compilers
+  return p; // BUG: return a;
 }
 
 int list_length(Elem *h) {
@@ -44,8 +41,8 @@ int list_length(Elem *h) {
 }
 
 int main() {
-  Elem *a = new_Elem();
-  Elem *b = new_Elem();
+  Elem *a = Elem_new();
+  Elem *b = Elem_new();
   a->next = b; // the code should fail here
   Elem *head = a;
 

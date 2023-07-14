@@ -14,7 +14,7 @@
 */
 
 #include <assert.h>
-#include <stdbool.h>
+#include <stdbool.h> // TODO NEXT YEARS: should be useless for C23
 
 int main() {
   assert(false); // always fail
