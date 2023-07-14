@@ -19,12 +19,10 @@
 
 const unsigned int SIZE = 100;
 
-void fibon(unsigned int size, unsigned int p[size]) { // NB: C11 array
-                                                      // size
-                                                      // argument. Old
-                                                      // alternative:
-                                                      // uint *p
-
+// Double free heap allocated array p, inside and outside fibon
+// function. NB : C11 array size argument.
+// Old alternative : uint *p
+void fibon(const unsigned int size, unsigned int p[static size]) {
   for (unsigned int i = 0; i < size; i++)
     if (i < 2)
       p[i] = i;
