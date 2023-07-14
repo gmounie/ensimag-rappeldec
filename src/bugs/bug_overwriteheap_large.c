@@ -26,18 +26,19 @@ const unsigned int SIZE = 10000; // size may be a misleading name
    warns you ! Read the warnings ! Solve them !
 
    Note that older or other compilers may miss it. Use as recent as
-   possible compiler. Even for stable language as C, it is helpful.
+   possible compiler. Even for quite stable language as C, it is
+   helpful.
 
-   Note also that without the old classical notation, aka.
+   Note also that with the old classical notation, aka.
      unsigned int size, unsigned int *p
 
-   or if you do not indicate the size of the
-   array, the compiler may not help you.
+   or if you do not indicate the size of the array in the argument,
+   the compiler may not help you.
 
    @param size size of the array
    @param p array of size "size"
  */
-void fibon(unsigned int size, unsigned int p[size]) {
+void fibon(unsigned int size, unsigned int p[static size]) {
   for (unsigned int i = 0; i <= size; i++)
     if (i < 2)
       p[i] = i;
@@ -48,7 +49,7 @@ void fibon(unsigned int size, unsigned int p[size]) {
 int main() {
   assert(SIZE > 2);
 
-  unsigned int *p = malloc(SIZE); // BUG: sizeof( int[SIZE] ));
+  unsigned int *p = malloc(SIZE); // BUG: 4x smaller than correct sizeof( int[SIZE] ));
   assert(p != NULL);
 
   fibon(SIZE, p);
