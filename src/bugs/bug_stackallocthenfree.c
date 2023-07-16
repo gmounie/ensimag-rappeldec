@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const unsigned int SIZE = 100;
+unsigned int SIZE = 100;
 
 // fibon was allocated in stack, not in the heap with malloc. free can
 // not be called on it. p with C11 array parameter size
@@ -30,7 +30,10 @@ void fibon(const unsigned int size, unsigned int p[static size]) {
   free(p);
 }
 
-int main() {
+// Notation C11+ pour les arguments du main
+int main(int argc, char *argv[static argc + 1]) {
+  if (argc == 2)
+    SIZE = atoi(argv[1]);
   assert(SIZE > 2);
 
   unsigned int p[SIZE];
@@ -38,5 +41,5 @@ int main() {
 
   fibon(SIZE, p);
 
-  return 0;
+  return EXIT_SUCCESS;
 }
