@@ -19,23 +19,28 @@ typedef struct elem {
   struct elem *next;
 } Elem;
 
-int functional_list_length(Elem *h) {
+// Valid code pattern in Haskell, OCaml or LISP/Scheme, that remove
+// terminal recursivity, but not in most imperative languages like
+// C/C++ or Python. BUG: call recursivity depth is a linear function
+// of the list length. All args, local variables and return adress are
+// allocated in the stack at each call. As the stack is commonly
+// limited to 8 MB, a stack overflow appears as soon as the list is
+// not small. Note: Golang has 2GB stack, hidding this bug most of the
+// time.
+int list_length_functional_style(Elem *h) {
   if (h == NULL)
     return 0;
 
-  return 1 + functional_list_length(h->next); // BUG: unbounded
-                                              // recursivity thus
-                                              // potential stack
-                                              // overflow
+  return 1 + list_length_functional_style(h->next);
 }
 
 int main() {
-  // a circular list will trigger the bug
+  // a small circular list will trigger the bug too
   Elem a;
-  Elem b = {&a};
-  a = (Elem){&b};
+  Elem b = {.next = &a};
+  a = (Elem){.next = &b};
   Elem *head = &a;
 
-  printf("list length: %d\n", functional_list_length(head));
+  printf("list length: %d\n", list_length_functional_style(head));
   return 0;
 }
