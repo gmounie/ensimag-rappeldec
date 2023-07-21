@@ -14,13 +14,16 @@
 */
 
 #include <assert.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-const unsigned int NB = 100;
+const uint32_t NB = 100;
 
-void fibon(unsigned int size, unsigned int p[size]) { // C11 array args
-  for (unsigned int i = 0; i < size; i++)
+void fibon(const uint32_t n, uint32_t p[static n]) {
+  // C11 array args, p is guaranteed by programmer to be at least n
+  for (uint32_t i = 0; i < n; i++)
     if (i < 1) // BUG: i < 2
       p[i] = i;
     else
@@ -29,11 +32,12 @@ void fibon(unsigned int size, unsigned int p[size]) { // C11 array args
 
 int main() {
   assert(NB > 2);
-  unsigned int *p = malloc(sizeof(int[NB]));
+  uint32_t *p = malloc(sizeof(uint32_t[NB]));
   assert(p != NULL);
+  memset(p, 0, sizeof(uint32_t[NB]));
 
   fibon(NB, p);
 
   free(p);
-  return 0;
+  return EXIT_SUCCESS;
 }

@@ -15,9 +15,10 @@
 
 #include <assert.h>
 #include <stdbool.h> // TODO NEXT YEARS: should be useless for C23
+#include <stdlib.h>
 
 int main() {
-  assert(false); // always fail
+  assert(false); // always fails
 
-  return 0;
+  return EXIT_SUCCESS; // the value of the macro is 0
 }
