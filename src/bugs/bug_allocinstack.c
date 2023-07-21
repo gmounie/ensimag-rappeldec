@@ -32,7 +32,7 @@ Elem *Elem_new() {
 }
 
 int list_length(Elem *h) {
-  int l = 0;
+  long long int l = 0;
   while (h != NULL) {
     h = h->next;
     l++;
