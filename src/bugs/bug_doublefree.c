@@ -40,5 +40,5 @@ int main() {
   fibon(SIZE, p);
 
   free(p); // BUG: you must free only once
-  return 0;
+  return EXIT_SUCCESS;
 }

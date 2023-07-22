@@ -14,6 +14,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct elem {
   struct elem *next;
@@ -42,5 +43,5 @@ int main() {
   Elem *head = &a;
 
   printf("list length: %d\n", list_length_functional_style(head));
-  return 0;
+  return EXIT_SUCCESS;
 }
