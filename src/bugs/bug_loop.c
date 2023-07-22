@@ -15,6 +15,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -31,7 +32,7 @@ uint64_t list_length(Elem *h) {
   return l;
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[static argc +1]) {
   (void)argc;
 
   int mypid = getpid();
@@ -43,5 +44,5 @@ int main(int argc, char **argv) {
   Elem *head = &a;
   // infinite loop in list_length
   printf("list length: %lu\n", list_length(head));
-  return 0;
+  return EXIT_SUCCESS;
 }
