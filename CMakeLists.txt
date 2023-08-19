@@ -41,15 +41,15 @@ add_executable(fqsort src/fqsort.c)
 target_link_libraries(fqsort m)
 
 # bug demonstration programs
-add_executable(bug_assert src/bugs/bug_assert.c)
-add_executable(bug_doublefree src/bugs/bug_doublefree.c)
-add_executable(bug_stackallocthenfree src/bugs/bug_stackallocthenfree.c)
-add_executable(bug_stackoverflow src/bugs/bug_stackoverflow.c)
-add_executable(bug_overreadheap_tiny src/bugs/bug_overreadheap_tiny.c)
-add_executable(bug_overwriteheap_tiny src/bugs/bug_overwriteheap_tiny.c)
-add_executable(bug_overwriteheap_large src/bugs/bug_overwriteheap_large.c)
-add_executable(bug_allocinstack src/bugs/bug_allocinstack.c)
-add_executable(bug_loop src/bugs/bug_loop.c)
+add_executable(bug_assert bug-training/bug_assert.c)
+add_executable(bug_doublefree bug-training//bug_doublefree.c)
+add_executable(bug_stackallocthenfree bug-training//bug_stackallocthenfree.c)
+add_executable(bug_stackoverflow bug-training/bug_stackoverflow.c)
+add_executable(bug_overreadheap_tiny bug-training/bug_overreadheap_tiny.c)
+add_executable(bug_overwriteheap_tiny bug-training/bug_overwriteheap_tiny.c)
+add_executable(bug_overwriteheap_large bug-training/bug_overwriteheap_large.c)
+add_executable(bug_allocinstack bug-training/bug_allocinstack.c)
+add_executable(bug_loop bug-training/bug_loop.c)
 
 ##
 # Test programs
