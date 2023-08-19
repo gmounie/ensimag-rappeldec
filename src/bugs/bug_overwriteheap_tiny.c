@@ -36,5 +36,5 @@ int main() {
   fibon(NB, p);
 
   free(p);
-  return 0;
+  return EXIT_SUCCESS;
 }
