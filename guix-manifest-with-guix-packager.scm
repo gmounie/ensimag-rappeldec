@@ -16,9 +16,13 @@
     (version "2.0")
     (source
       (origin
-        (method url-fetch)
-        (uri "mirror://gnu/hello/hello-2.10.tar.gz")
-        (sha256 (base32 "0ssi1wpaf7plaswqqjwigppsg5fyh99vdlb9kzl7c9lng89ndq1i"))))
+        (method git-fetch)
+        (uri (git-reference
+              (url "git@github.com:gmounie/ensimag-rappeldec.git")
+              (recursive? #f)
+              (commit "master")))
+        (file-name (git-file-name name version))
+        (sha256 (base32 "1yndz62drc5vbjqsk15jqwrrlgs16i1yssi7sjh9ad06wx8w2gdl"))))
     (native-inputs
      (list cmake ruby-minitest gcc-13 bash))
     (inputs
