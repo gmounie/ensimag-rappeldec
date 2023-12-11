@@ -124,7 +124,7 @@ int main(void) {
 
   /* vérification avec une liste très longue (1M) élément pour faire
    * exploser les implémentations récursives (taille de la pile == 8Mo) */
-  long unsigned int *valeurs_nombreuses = malloc(sizeof(unsigned int[TAILLE_GRANDE]));
+  long unsigned int *valeurs_nombreuses = malloc(sizeof(long unsigned int[TAILLE_GRANDE]));
   for (size_t i = 0; i < TAILLE_GRANDE; i++) {
     valeurs_nombreuses[i] = i;
   }
