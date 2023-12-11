@@ -74,6 +74,7 @@ void inversion_liste(struct elem *liste[static 1]) {
 }
 
 const long unsigned int TAILLE = 100;
+const long unsigned int TAILLE_GRANDE = 1000000;
 
 int main(void) {
   /* Test d'affichage d'une liste créée à la main. */
@@ -121,5 +122,16 @@ int main(void) {
    * mémoire n'est présente. */
   destruction_liste(tab_elem);
 
+  /* vérification avec une liste très longue (1M) élément pour faire
+   * exploser les implémentations récursives (taille de la pile == 8Mo) */
+  long unsigned int *valeurs_nombreuses = malloc(sizeof(unsigned int[TAILLE_GRANDE]));
+  for (size_t i = 0; i < TAILLE_GRANDE; i++) {
+    valeurs_nombreuses[i] = i;
+  }
+
+  tab_elem = creation_liste(TAILLE, valeurs_nombreuses);
+  assert(tab_elem != NULL);
+  destruction_liste(tab_elem);
+  
   return EXIT_SUCCESS;
 }
