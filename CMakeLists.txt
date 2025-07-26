@@ -5,8 +5,8 @@ enable_testing()
 set(CMAKE_BUILD_TYPE Debug)
 # affiche les commandes du makefile par défaut (exposer les étudiants à ce que fait le makefile pour eux)
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_STANDARD 23)
+set(CMAKE_CXX_STANDARD 23)
 
 # alternative: use ASan memory checker. Incompatible with valgrind: -fsanitize=address
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -fanalyzer -Wconversion")
