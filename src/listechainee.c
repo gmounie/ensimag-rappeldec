@@ -35,7 +35,7 @@ void affichage_liste(struct elem const *const liste) {
   /**
      Votre code est à mettre ici !
   */
-  for (struct elem const *courant = liste; courant != NULL;
+  for (struct elem const *courant = liste; courant != nullptr;
        courant = courant->next) {
     printf("%lu ", courant->val);
   }
@@ -70,7 +70,7 @@ struct elem *creation_liste(size_t nb_elems,
 */
 void destruction_liste(struct elem liste[static 1]) {
   struct elem *courant = liste;
-  while (courant != NULL) {
+  while (courant != nullptr) {
     struct elem *suivant = courant->next;
     free(courant);
     courant = suivant;
@@ -93,15 +93,15 @@ void debug_inversion(struct elem *h1, struct elem *h2) {
 
 void inversion_liste(struct elem *liste[static 1])
 {
-    if (liste == NULL || *liste == NULL) {
+    if (liste == nullptr || *liste == nullptr) {
         return;
     }
 
   struct elem *cur = *liste;
   struct elem *next = cur->next;
-  cur->next = NULL;
+  cur->next = nullptr;
 
-  while (next != NULL) {
+  while (next != nullptr) {
     struct elem *next_next = next->next;
     next->next = cur;
     cur = next;
@@ -113,12 +113,12 @@ void inversion_liste(struct elem *liste[static 1])
 #else // BAD: will fail on large list
 struct elem *reverse(struct elem *head) {
   struct elem *tmp;
-  if (head == NULL || head->next == NULL)
+  if (head == nullptr || head->next == nullptr)
     return head;
 
   tmp = reverse(head->next);
   head->next->next = head;
-  head->next = NULL;
+  head->next = nullptr;
   return tmp;
 }
 // BAD: will fail on large list
@@ -126,7 +126,7 @@ void inversion_liste(struct elem **liste) {
   /**
      Votre code est à mettre ici !
   */
-  if (liste == NULL || *liste == NULL)
+  if (liste == nullptr || *liste == nullptr)
     return;
   *liste = reverse(*liste);
 }
