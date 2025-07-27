@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static constexpr unsigned long long X = 123456ULL;
+static unsigned long long X = 123456ULL;
 
 unsigned char crand48() {
 #if 0
