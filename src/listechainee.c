@@ -39,19 +39,19 @@ void affichage_liste(struct elem const *const liste) {
 /* Crée une liste simplement chainée à partir des nb_elems éléments du
  * tableau valeurs. */
 struct elem *creation_liste(size_t nb_elems,
-                            long unsigned int const valeurs[nb_elems]) {
+                            long unsigned int const valeurs[static nb_elems]) {
   /**
      Votre code est à mettre ici !
   */
   (void)nb_elems; // to remove
   (void)valeurs;  // to remove
-  return NULL;
+  return nullptr;
 }
 
 /**
    Libère toute la mémoire associée à la liste passée en paramètre.
 
-   @param liste head list, pointer on first element, not NULL
+   @param liste head list, pointer on first element, not nullptr
 */
 void destruction_liste(struct elem liste[static 1]) {
   /**
@@ -64,7 +64,7 @@ void destruction_liste(struct elem liste[static 1]) {
  * Inverse la liste simplement chainée passée en paramètre. Le
  * paramètre liste contient l'adresse du pointeur sur la tête de liste
  * à inverser.
- * @param liste head list address, not NULL
+ * @param liste head list address, not nullptr
  */
 void inversion_liste(struct elem *liste[static 1]) {
   /**
@@ -76,7 +76,7 @@ void inversion_liste(struct elem *liste[static 1]) {
 const long unsigned int TAILLE = 100;
 const long unsigned int TAILLE_GRANDE = 1000000;
 
-int main(void) {
+int main(int argc, [[maybe_unused]] char *argv[static argc + 1]) {
   /* Test d'affichage d'une liste créée à la main. */
   struct elem e1, e2, e3;
   e1.val = 0;
@@ -84,7 +84,7 @@ int main(void) {
   e3.val = 2;
   e1.next = &e2;
   e2.next = &e3;
-  e3.next = NULL;
+  e3.next = nullptr;
   affichage_liste(&e1);
 
   long unsigned int valeurs[TAILLE];
@@ -93,12 +93,12 @@ int main(void) {
   }
 
   struct elem *tab_elem = creation_liste(TAILLE, valeurs);
-  assert(tab_elem != NULL);
+  assert(tab_elem != nullptr);
 
   /* Test que la liste dans l'ordre */
   struct elem *tmp;
   long unsigned int idx;
-  for (tmp = tab_elem, idx = 0; tmp != NULL; idx++, tmp = tmp->next) {
+  for (tmp = tab_elem, idx = 0; tmp != nullptr; idx++, tmp = tmp->next) {
     assert(tmp->val == idx);
   }
   /* Test que la liste est complète (à la suite du test sur l'ordre) */
@@ -107,12 +107,12 @@ int main(void) {
   printf("Liste créée:\n");
   affichage_liste(tab_elem);
   inversion_liste(&tab_elem);
-  assert(tab_elem != NULL);
+  assert(tab_elem != nullptr);
   printf("Liste inversée:\n");
   affichage_liste(tab_elem);
 
   /* Vérifie que la liste est inversée et complète */
-  for (tmp = tab_elem, idx = TAILLE - 1; tmp != NULL; --idx, tmp = tmp->next) {
+  for (tmp = tab_elem, idx = TAILLE - 1; tmp != nullptr; --idx, tmp = tmp->next) {
     assert(tmp->val == idx);
   }
   assert(idx == (long unsigned int)(0UL - 1));
@@ -130,7 +130,7 @@ int main(void) {
   }
 
   tab_elem = creation_liste(TAILLE, valeurs_nombreuses);
-  assert(tab_elem != NULL);
+  assert(tab_elem != nullptr);
   destruction_liste(tab_elem);
   
   return EXIT_SUCCESS;
