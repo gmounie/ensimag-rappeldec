@@ -25,7 +25,6 @@
 extern "C" {
 #endif
 
-#include <stdbool.h>
   bool bt1k_get(long unsigned int n);
   void bt1k_set(long unsigned int n, bool val);
   void bt1k_reset();
