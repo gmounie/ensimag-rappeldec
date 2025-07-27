@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static unsigned long long X = 123456ULL;
+static constexpr unsigned long long X = 123456ULL;
 
 unsigned char crand48() {
 #if 0
@@ -19,7 +19,7 @@ unsigned char crand48() {
 #endif
 }
 
-int main(void) {
+int main(int argc, [[maybe_unused]] char *argv[static argc +1]) {
   printf("%hhu\n", crand48());
   printf("%hhu\n", crand48());
   printf("%hhu\n", crand48());

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int main(int argc, [[maybe_unused]] char *argv[static argc + 1]) {
   /* version 1 et 2 */
   float a = 0.0001f, b = 0.0002f, c = 0.0003f;
   printf("%e\n", fabmc(a, b, c));
@@ -21,6 +21,5 @@ int main(void) {
 
   _Decimal128 dla = 0.0001dl, dlb = 0.0002dl, dlc = 0.0003dl;
   printf("%DDe\n", dlabmc(dla, dlb, dlc));
-
   return EXIT_SUCCESS;
 }

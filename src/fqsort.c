@@ -17,9 +17,10 @@ int triarg(const void *a, const void *b) {
     return 0;
   return 1;
 }
-const int TAILLE = 100;
+constexpr int TAILLE = 100;
 
-int main(void) {
+
+int main(int argc, [[maybe_unused]] char *argv[static argc+1]) {
   /* initialisation du tableau */
   double complex tableau[TAILLE];
   srand48(123456);
