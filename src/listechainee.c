@@ -73,8 +73,8 @@ void inversion_liste(struct elem *liste[static 1]) {
   (void)liste; // to remove
 }
 
-const long unsigned int TAILLE = 100;
-const long unsigned int TAILLE_GRANDE = 1000000;
+constexpr long unsigned int TAILLE = 100;
+constexpr long unsigned int TAILLE_GRANDE = 1000000;
 
 int main(int argc, [[maybe_unused]] char *argv[static argc + 1]) {
   /* Test d'affichage d'une liste créée à la main. */
