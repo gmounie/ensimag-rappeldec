@@ -6,9 +6,9 @@
    Ajouter la fonction de comparaison du tri ici
 */
 
-const int TAILLE = 100;
+constexpr int TAILLE = 100;
 
-int main(void) {
+int main(int argc, [[maybe_unused]] char *argv[static argc+1]) {
   /* initialisation du tableau */
   double complex tableau[TAILLE];
   srand48(123456);
