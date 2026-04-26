@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static unsigned char *memoire_elem_pool = 0;
+static unsigned char *memoire_elem_pool = nullptr;
 
 /**
    Fonction allouant un element
@@ -48,8 +48,10 @@ void gc_elems(const int nbheads, struct elem *const heads[static nbheads]) {
 
 void init_elems() {
   bt1k_reset();
+  static_assert(sizeof(unsigned char) == 1);
+  constexpr size_t taille_zone = sizeof(struct elem[1000]);
   if (memoire_elem_pool == NULL) {
-    memoire_elem_pool = malloc(sizeof(struct elem[1000]));
+    memoire_elem_pool = malloc(taille_zone);
   }
-  memset(memoire_elem_pool, 0, sizeof(struct elem[1000]));
+  memset(memoire_elem_pool, 0, taille_zone);
 }
